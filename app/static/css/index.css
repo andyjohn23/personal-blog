@@ -1,6 +1,6 @@
 .navbar-brand{
     margin-left: 5%;
-    margin-right: 7%;
+    margin-right: 6%;
 }
 .navbar-brand img{
     width: 100px;
@@ -17,7 +17,7 @@
     color: #202020;
 }
 .navbar .main-nav{
-    gap: 15px;
+    gap: 18px;
 }
 .users-sigin{
     margin-right: 5%;

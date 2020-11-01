@@ -37,3 +37,13 @@
 .register-content .form-control{
     width: 100%
 }
+.login-form{
+    background-color:rgba(3,3,3,0.8);
+    width: 700px;
+    height: 380px;
+    margin-top: 8%;
+    color: white;
+}
+.login-content .form-control{
+    width: 100%
+}

@@ -19,10 +19,7 @@ class User(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key = True)
     username = db.Column(db.String(255), unique = True)
     email = db.Column(db.String(255), unique = True, index=True)
-    bio = db.Column(db.String(255))
-    profile_pic_path = db.Column(db.String(30), default='profile.jpg')
     pass_secure = db.Column(db.String(200))
-    post = db.relationship('Posts', backref='author', lazy='dynamic')
 
     @property
     def password(self):
@@ -59,8 +56,8 @@ class Posts(db.Model):
     id = db.Column(db.Integer, primary_key = True)
     title = db.Column(db.String(200))
     content = db.Column(db.String(200))
-    date_posted = db.Column(db.DateTime, default=datetime.utcnow)
-    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    date_posted = db.Column(db.DateTime)
+    slug = db.Column(db.String(200))
 
     def save_post(self):
         db.session.add(self)

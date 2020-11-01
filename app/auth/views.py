@@ -1,7 +1,7 @@
 from flask import render_template,redirect,url_for,flash,request
 from . import auth
 from ..models import User
-from .forms import RegistrationForm,LoginForm
+from .forms import RegistrationForm,LoginForm,adminForm
 from .. import db
 from flask_login import login_user,logout_user,login_required
 
@@ -31,6 +31,20 @@ def login():
 
     title = "login"
     return render_template('auth/login.html',login_form = login_form,title=title)
+
+@auth.route('/admin',methods=['GET','POST'])
+def create_admin():
+    admin_form = adminForm()
+
+    if request.method == "POST":
+        new_user = User(email = request.form['email'], password = request.form['password'])
+        db.session.add(new_user)
+        db.commit()
+        return "you have created an admin account"
+       
+
+    title = "login"
+    return render_template('auth/admin.html',admin_form = admin_form,title=title)
 
 @auth.route('/logout')
 @login_required

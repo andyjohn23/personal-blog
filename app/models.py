@@ -67,6 +67,9 @@ class Posts(db.Model):
     content = db.Column(db.Text)
     date_posted = db.Column(db.DateTime)
     slug = db.Column(db.String(200))
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    comments = db.Column(db.Integer, default=0)
+    views = db.Column(db.Integer, default=0)
 
     def save_post(self):
         db.session.add(self)

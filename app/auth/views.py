@@ -45,6 +45,7 @@ def create_admin():
 
     title = "login"
     return render_template('auth/admin.html',admin_form = admin_form,title=title)
+    
 
 @auth.route('/logout')
 @login_required

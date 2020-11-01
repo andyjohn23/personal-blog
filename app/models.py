@@ -4,6 +4,7 @@ from flask_login import UserMixin
 from . import login_manager
 from datetime import datetime
 
+
 @login_manager.user_loader
 def load_user(user_id):
     return User.query.get(int(user_id))
@@ -56,6 +57,7 @@ class Posts(db.Model):
     id = db.Column(db.Integer, primary_key = True)
     title = db.Column(db.String(200))
     content = db.Column(db.String(200))
+    author = db.Column(db.String(200))
     date_posted = db.Column(db.DateTime)
     slug = db.Column(db.String(200))
 
@@ -65,3 +67,5 @@ class Posts(db.Model):
 
     def __repr__(self):
         return f"Posts('{self.title}','{self.date_posted}')"
+
+

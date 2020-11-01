@@ -1,4 +1,9 @@
 {% extends "base.html" %}
+{% import 'macros.html' as macro %}
 {% block content %}
+
+    <div class="col-md-4 show-pitch" id="all" style="margin-top:10%;">
+        {{ macro.displayPost(posts)}}
+    </div>
 
 {% endblock content %}

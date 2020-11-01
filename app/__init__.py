@@ -27,8 +27,9 @@ def create_app(config_name):
 
     # Will add the views and forms
     adm = Admin(app,name='Blog-Admin')
-    from app.models import User, Controller
+    from app.models import Posts,User,Controller
     adm.add_view(Controller(User, db.session))
+    adm.add_view(Controller(Posts, db.session))
 
     # Registering the blueprint
     from .main import main as main_blueprint

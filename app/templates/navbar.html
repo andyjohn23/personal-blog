@@ -70,6 +70,7 @@
                             aria-hidden="true"></i>&nbsp;{{current_user.username}}
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="{{url_for('auth.create_admin')}}">Add Admin</a>
                         <a class="dropdown-item" href="/admin">Admin</a>
                         <a class="dropdown-item" href="{{url_for('auth.logout')}}">Logout</a>
                     </div>

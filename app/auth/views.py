@@ -37,9 +37,9 @@ def create_admin():
     admin_form = adminForm()
 
     if request.method == "POST":
-        new_user = User(email = request.form['email'], password = request.form['password'])
+        new_user = User(email = request.form['email'], password = request.form['password'], is_admin=True)
         db.session.add(new_user)
-        db.commit()
+        db.session.commit()
         return "you have created an admin account"
        
 

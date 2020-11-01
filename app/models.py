@@ -87,6 +87,6 @@ class Controller(ModelView):
         else:
             abort(404)    
     def not_auth(self):
-        return "your are not authorised"
+        return "you are not authorised"
 
 admin.add_view(Controller(Posts, db.session))

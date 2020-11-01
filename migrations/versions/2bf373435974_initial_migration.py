@@ -1,8 +1,8 @@
-"""Initial Migration
+"""initial migration
 
-Revision ID: b985295aa318
+Revision ID: 2bf373435974
 Revises: 
-Create Date: 2020-11-01 17:29:10.518570
+Create Date: 2020-11-01 21:31:46.147609
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = 'b985295aa318'
+revision = '2bf373435974'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -21,8 +21,9 @@ def upgrade():
     op.create_table('posts',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('title', sa.String(length=200), nullable=True),
-    sa.Column('content', sa.String(length=200), nullable=True),
+    sa.Column('content', sa.Text(), nullable=True),
     sa.Column('date_posted', sa.DateTime(), nullable=True),
+    sa.Column('slug', sa.String(length=200), nullable=True),
     sa.PrimaryKeyConstraint('id')
     )
     op.create_table('users',
@@ -30,6 +31,7 @@ def upgrade():
     sa.Column('username', sa.String(length=255), nullable=True),
     sa.Column('email', sa.String(length=255), nullable=True),
     sa.Column('pass_secure', sa.String(length=200), nullable=True),
+    sa.Column('is_admin', sa.Boolean(), nullable=True),
     sa.PrimaryKeyConstraint('id'),
     sa.UniqueConstraint('username')
     )

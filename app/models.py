@@ -1,16 +1,19 @@
 from . import db
-from werkzeug.security import generate_password_hash,check_password_hash
-from flask_login import UserMixin
+from werkzeug.security import generate_password_hash, check_password_hash
+from flask_login import UserMixin, current_user
 from . import login_manager
 from datetime import datetime
+from flask import abort, session
 from flask_admin import Admin
 from flask_admin.contrib.sqla import ModelView
 
 admin = Admin()
 
+
 @login_manager.user_loader
 def load_user(user_id):
     return User.query.get(int(user_id))
+
 
 class User(UserMixin, db.Model):
     '''
@@ -18,12 +21,13 @@ class User(UserMixin, db.Model):
     Args:
         db.Model: Connect our class to the database
     '''
-    __tablename__  = 'users'
+    __tablename__ = 'users'
 
-    id = db.Column(db.Integer, primary_key = True)
-    username = db.Column(db.String(255), unique = True)
-    email = db.Column(db.String(255), unique = True, index=True)
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String(255), unique=True)
+    email = db.Column(db.String(255), unique=True, index=True)
     pass_secure = db.Column(db.String(200))
+    is_admin = db.Column(db.Boolean, default=False)
 
     @property
     def password(self):
@@ -33,11 +37,11 @@ class User(UserMixin, db.Model):
         raise AttributeError('You cannot read the password attribute')
 
     @password.setter
-    def password(self,password):
+    def password(self, password):
         self.pass_secure = generate_password_hash(password)
 
-    def verify_password(self,password):
-        return check_password_hash(self.pass_secure,password)
+    def verify_password(self, password):
+        return check_password_hash(self.pass_secure, password)
 
     def save_user(self):
         '''
@@ -45,9 +49,10 @@ class User(UserMixin, db.Model):
         '''
         db.session.add(self)
         db.session.commit()
-    
+
     def __repr__(self):
         return f"User('{self.username}', '{self.email}', '{self.profile_pic_path}')"
+
 
 class Posts(db.Model):
     '''
@@ -55,9 +60,9 @@ class Posts(db.Model):
     Args:
         db.Model: Connect our class to the database
     '''
-    __tablename__  = 'posts'
+    __tablename__ = 'posts'
 
-    id = db.Column(db.Integer, primary_key = True)
+    id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(200))
     content = db.Column(db.Text)
     date_posted = db.Column(db.DateTime)
@@ -70,7 +75,15 @@ class Posts(db.Model):
     def __repr__(self):
         return f"Posts('{self.title}','{self.date_posted}')"
 
-admin.add_view(ModelView(Posts, db.session))
 
-class admin(ModelView):
-    
+class Controller(ModelView):
+    def is_accessible(self):
+        if current_user.is_admin == True:
+            return current_user.is_authenticated
+        else:
+            abort(404)    
+    def not_auth(self):
+        return "your are not authorised"
+
+
+admin.add_view(Controller(Posts, db.session))

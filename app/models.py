@@ -65,11 +65,12 @@ class Posts(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(200))
     content = db.Column(db.Text)
+    comments = db.Column(db.Integer, default=0)
+    views = db.Column(db.Integer, default=0)
     date_posted = db.Column(db.DateTime)
     slug = db.Column(db.String(200))
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
-    comments = db.Column(db.Integer, default=0)
-    views = db.Column(db.Integer, default=0)
+    
 
     def save_post(self):
         db.session.add(self)
@@ -81,7 +82,7 @@ class Posts(db.Model):
 
 class Controller(ModelView):
     def is_accessible(self):
-        if current_user.is_admin == True:
+        if current_user.is_authenticated:
             return current_user.is_authenticated
         else:
             abort(404)    

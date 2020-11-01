@@ -28,6 +28,7 @@ class User(UserMixin, db.Model):
     email = db.Column(db.String(255), unique=True, index=True)
     pass_secure = db.Column(db.String(200))
     is_admin = db.Column(db.Boolean, default=False)
+    posts = db.relationship('Posts', backref='author', lazy='dynamic')
 
     @property
     def password(self):
@@ -82,7 +83,7 @@ class Posts(db.Model):
 
 class Controller(ModelView):
     def is_accessible(self):
-        if current_user.is_authenticated:
+        if current_user.is_admin == True:
             return current_user.is_authenticated
         else:
             abort(404)    

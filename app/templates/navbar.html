@@ -11,6 +11,7 @@
 
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav main-nav">
+                {% if current_user.is_authenticated %}
                 <li class="nav-item">
                     <a class="nav-link" href="#"><i class="fa fa-laptop" aria-hidden="true"></i>&nbsp;TECHNOLOGY</a>
                 </li>
@@ -24,13 +25,45 @@
                     <a class="nav-link" href="#"><i class="fa fa-life-ring" aria-hidden="true"></i>&nbsp;LIFESTYLE</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#"><i class="fa fa-hand-spock-o" aria-hidden="true"></i>&nbsp;FICTION STORIES</a>
+                    <a class="nav-link" href="#"><i class="fa fa-hand-spock-o" aria-hidden="true"></i>&nbsp;FICTION
+                        STORIES</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#"><i class="fa fa-globe" aria-hidden="true"></i>&nbsp;MY KENYA</a>
+                </li>&nbsp;&nbsp;
+
+                <li class="nav-item dropdown sigin-user">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user-circle"
+                            aria-hidden="true"></i>&nbsp;{{current_user.username}}
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="{{url_for('auth.logout')}}">Logout</a>
+                    </div>
                 </li>
-            </ul>
-            <ul class="nav navbar-nav  ml-auto users-sigin">
+
+                {% else %}
+
+                <li class="nav-item">
+                    <a class="nav-link" href="#"><i class="fa fa-laptop" aria-hidden="true"></i>&nbsp;TECHNOLOGY</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#"><i class="fa fa-star" aria-hidden="true"></i>&nbsp;REVIEWS</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#"><i class="fa fa-gamepad" aria-hidden="true"></i>&nbsp;GAMING</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#"><i class="fa fa-life-ring" aria-hidden="true"></i>&nbsp;LIFESTYLE</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#"><i class="fa fa-hand-spock-o" aria-hidden="true"></i>&nbsp;FICTION
+                        STORIES</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#"><i class="fa fa-globe" aria-hidden="true"></i>&nbsp;MY KENYA</a>
+                </li>&nbsp;&nbsp;
+
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user-circle"
@@ -42,6 +75,8 @@
                     </div>
                 </li>
             </ul>
+
+            {% endif %}
 
         </div>
     </nav>

@@ -17,33 +17,74 @@
     color: #202020;
 }
 .navbar .main-nav{
-    gap: 17px;
-    margin-right: 1%;
+    gap: 15px;
 }
-.users-sigin{
-    margin-right: 1%;
+.registration-form{
+    margin-top: 10%;
 }
-.users-sigin .nav-item{
-    font-size: 19px;
-    color: black;
+.registration-form input{
+    outline: none;
+    background: transparent;
+    border: 1px solid black;
+    width: 88%;
+    margin-left: 5%;
 }
-.register-form{
-    background-color:rgba(3,3,3,0.8);
-    width: 700px;
-    height: 530px;
-    margin-top: 8%;
+.registration-form label{
+    margin-left: 5.5%;
+    font-size: 15px;
+    font-family: 'Courier New', Courier, monospace;
+    color: grey;
+}
+.registration-form input[type=submit]{
+    width: 88%;
+    height: 50px;
+    background-color: rgba(0,0,0,0.8);
     color: white;
+    font-size: 16px;
+    font-weight: 200;
+    border: none;
+    outline: none;
+    border-radius: 8px;
 }
-.register-content .form-control{
-    width: 100%
+.registration-form p{
+    margin-left: 5%;
+    margin-top: 3%;
+    font-size: 14px;
 }
 .login-form{
-    background-color:rgba(3,3,3,0.8);
-    width: 700px;
-    height: 380px;
-    margin-top: 8%;
-    color: white;
+    margin-top: 10%;
 }
-.login-content .form-control{
-    width: 100%
+.login-form input{
+    outline: none;
+    background: transparent;
+    border: 1px solid black;
+    width: 88%;
+    margin-left: 5%;
+}
+.login-form label{
+    margin-left: 5.5%;
+    font-size: 15px;
+    font-family: 'Courier New', Courier, monospace;
+    color: grey;
+}
+.login-form input[type=submit]{
+    width: 88%;
+    height: 50px;
+    background-color: rgba(0,0,0,0.8);
+    color: white;
+    font-size: 16px;
+    font-weight: 200;
+    border: none;
+    outline: none;
+    border-radius: 8px;
+}
+.login-form .checkbox label{
+    align-items: center;
+    gap: 10px;
+    float: left;
+}
+.login-form p{
+    margin-left: 5%;
+    margin-top: 3%;
+    font-size: 14px;
 }

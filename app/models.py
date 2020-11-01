@@ -17,12 +17,12 @@ class User(UserMixin, db.Model):
     __tablename__  = 'users'
 
     id = db.Column(db.Integer, primary_key = True)
-    username = db.Column(db.String(255))
+    username = db.Column(db.String(255), unique = True)
     email = db.Column(db.String(255), unique = True, index=True)
     bio = db.Column(db.String(255))
-    profile_pic_path = db.Column(db.String())
-    pass_secure = db.Column(db.String())
-    task = db.relationship('task', backref='user', lazy='dynamic')
+    profile_pic_path = db.Column(db.String(30), default='profile.jpg')
+    pass_secure = db.Column(db.String(200))
+    post = db.relationship('Posts', backref='author', lazy='dynamic')
 
     @property
     def password(self):
@@ -46,4 +46,25 @@ class User(UserMixin, db.Model):
         db.session.commit()
     
     def __repr__(self):
-        return f'User {self.username}'
+        return f"User('{self.username}', '{self.email}', '{self.profile_pic_path}')"
+
+class Posts(db.Model):
+    '''
+    Model class/db table for the post made by the writer
+    Args:
+        db.Model: Connect our class to the database
+    '''
+    __tablename__  = 'posts'
+
+    id = db.Column(db.Integer, primary_key = True)
+    title = db.Column(db.String(200))
+    content = db.Column(db.String(200))
+    date_posted = db.Column(db.DateTime, default=datetime.utcnow)
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+
+    def save_post(self):
+        db.session.add(self)
+        db.session.commit()
+
+    def __repr__(self):
+        return f"Posts('{self.title}','{self.date_posted}')"

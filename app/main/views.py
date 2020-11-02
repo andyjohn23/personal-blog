@@ -25,4 +25,5 @@ def account():
 
 @main.route('/blogs')
 def blogs():
-    return render_template('blogs.html')
+    posts = Posts.query.all()
+    return render_template('blogs.html', posts=posts)

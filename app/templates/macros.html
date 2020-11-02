@@ -1,13 +1,14 @@
 {% macro displayPost(posts) %}
 {% for post in posts %}
 <div class="container">
-    <a href={{"/posts/" + post.slug}}>
+    <a href={{"/posts/" + post.slug}} style="color: black;">
         <div class="card">
             <div class="card-body">
-                <h5 class="card-title">{{post.title}}</h5>
-                <p class="card-text">{{post.author}}</p>
-                <p class="card-text">{{post.content}}</p>
-                <p class="card-text">{{post.date_posted}}</p>
+                <img src="/static/images/logo.png" class="card-img-top" alt="blog_posts">
+                <strong><h5 class="card-title">{{post.title |truncate(20)}}</h5></strong>
+                <p class="card-text">{{post.content |truncate(150)}}</p><br>
+                <p class="card-text">Posted by: <a href="">{{ post.author }}</a>
+                    on {{post.date_posted.strftime('%B %d, %Y')}}</p>
             </div>
         </div>
     </a>

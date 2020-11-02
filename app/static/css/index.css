@@ -111,3 +111,55 @@
     color: grey;
     font-size: 14px;
 }
+.blog-posts{
+    margin-top: 4%;
+    margin-left: 6%;
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-gap:10px;
+}
+h3{
+    font-size: 20px;
+    color: black;
+    margin-top: 2%;
+    font-weight: bold;
+    font-family: 'Times New Roman', Times, serif;
+}
+.blog-posts p{
+    font-size: 13px;
+    color:#202020;
+}
+.blog-posts a{
+    text-decoration: none;
+}
+.blog-posts .card{
+    max-width: 27rem;
+    max-height: 100%;
+    background-color: rgba(202, 217, 228, 0.3);
+}
+.blog-posts h5{
+    font-size: 23px;
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: bold;
+    color: black;
+    width: 200px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 15px;
+}
+.blog-posts-title{
+    font-size: 20px;
+    color: black;
+    margin-top: 10%;
+    font-weight: bold;
+    font-family: 'Times New Roman', Times, serif;
+}
+.andy-blog{
+    margin-top: 10%;
+    margin-left: 7%;
+    font-size: 25px;
+    color:rgba(0,0,0,0.8);
+    font-family: cursive;
+    margin-bottom: 1px solid black;
+}

@@ -13,25 +13,15 @@
             <ul class="navbar-nav main-nav">
                 {% if current_user.is_admin == False %}
                 <li class="nav-item">
-                    <a class="nav-link" href="#"><i class="fa fa-laptop" aria-hidden="true"></i>&nbsp;TECHNOLOGY</a>
+                    <a class="nav-link" href="#">HOME</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#"><i class="fa fa-star" aria-hidden="true"></i>&nbsp;REVIEWS</a>
+                    <a class="nav-link" href="{{url_for('main.blogs')}}">BLOGS</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#"><i class="fa fa-gamepad" aria-hidden="true"></i>&nbsp;GAMING</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#"><i class="fa fa-life-ring" aria-hidden="true"></i>&nbsp;LIFESTYLE</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#"><i class="fa fa-hand-spock-o" aria-hidden="true"></i>&nbsp;FICTION
-                        STORIES</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#"><i class="fa fa-globe" aria-hidden="true"></i>&nbsp;MY KENYA</a>
+                    <a class="nav-link" href="#">QUOTES</a>
                 </li>&nbsp;&nbsp;
-
+                
                 <li class="nav-item dropdown sigin-user">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user-circle"
@@ -45,23 +35,13 @@
                 {% elif current_user.is_admin == True %}
 
                 <li class="nav-item">
-                    <a class="nav-link" href="#"><i class="fa fa-laptop" aria-hidden="true"></i>&nbsp;TECHNOLOGY</a>
+                    <a class="nav-link" href="#">HOME</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#"><i class="fa fa-star" aria-hidden="true"></i>&nbsp;REVIEWS</a>
+                    <a class="nav-link" href="{{url_for('main.blogs')}}">BLOGS</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#"><i class="fa fa-gamepad" aria-hidden="true"></i>&nbsp;GAMING</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#"><i class="fa fa-life-ring" aria-hidden="true"></i>&nbsp;LIFESTYLE</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#"><i class="fa fa-hand-spock-o" aria-hidden="true"></i>&nbsp;FICTION
-                        STORIES</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#"><i class="fa fa-globe" aria-hidden="true"></i>&nbsp;MY KENYA</a>
+                    <a class="nav-link" href="#">QUOTES</a>
                 </li>&nbsp;&nbsp;
 
                 <li class="nav-item dropdown">
@@ -79,23 +59,13 @@
                 {% else %}
 
                 <li class="nav-item">
-                    <a class="nav-link" href="#"><i class="fa fa-laptop" aria-hidden="true"></i>&nbsp;TECHNOLOGY</a>
+                    <a class="nav-link" href="#">HOME</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#"><i class="fa fa-star" aria-hidden="true"></i>&nbsp;REVIEWS</a>
+                    <a class="nav-link" href="{{url_for('main.blogs')}}">BLOGS</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#"><i class="fa fa-gamepad" aria-hidden="true"></i>&nbsp;GAMING</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#"><i class="fa fa-life-ring" aria-hidden="true"></i>&nbsp;LIFESTYLE</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#"><i class="fa fa-hand-spock-o" aria-hidden="true"></i>&nbsp;FICTION
-                        STORIES</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#"><i class="fa fa-globe" aria-hidden="true"></i>&nbsp;MY KENYA</a>
+                    <a class="nav-link" href="#">QUOTES</a>
                 </li>&nbsp;&nbsp;
 
                 <li class="nav-item dropdown">

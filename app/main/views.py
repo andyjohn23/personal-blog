@@ -22,3 +22,7 @@ def posts(slug):
 @main.route('/account')
 def account():
     return render_template('account.html')
+
+@main.route('/blogs')
+def blogs():
+    return render_template('blogs.html')

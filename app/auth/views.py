@@ -33,6 +33,7 @@ def login():
     return render_template('auth/login.html',login_form = login_form,title=title)
 
 @auth.route('/admin',methods=['GET','POST'])
+@role_required
 def create_admin():
     admin_form = adminForm()
 

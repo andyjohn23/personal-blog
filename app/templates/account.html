@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card profile-section" style="width: 18rem;">
+    <div class="row profile-section">
+        <div class="col-md-12">
+            <img class="rounded-circle profile" src="static/profile/profile.png">
+            <div class="media-body">
+                <h1 class="profile-header">{{ current_user.username }}</h1>
+                <p class="text-secondary">{{ current_user.email }}</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+    
+{% endblock content %}

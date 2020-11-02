@@ -26,6 +26,7 @@ class User(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(255), unique=True)
     email = db.Column(db.String(255), unique=True, index=True)
+    profile_pic = db.Column(db.String(200), default='profile.png')
     pass_secure = db.Column(db.String(200))
     is_admin = db.Column(db.Boolean, default=False)
     posts = db.relationship('Posts', backref='author', lazy='dynamic')
@@ -52,7 +53,7 @@ class User(UserMixin, db.Model):
         db.session.commit()
 
     def __repr__(self):
-        return f"User('{self.username}', '{self.email}', '{self.profile_pic_path}')"
+        return f"User('{self.username}', '{self.email}', '{self.profile_pic}')"
 
 
 class Posts(db.Model):

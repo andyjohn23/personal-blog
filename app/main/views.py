@@ -1,6 +1,7 @@
 from flask import render_template, redirect, url_for,abort
 from . import main
-from ..models import Posts
+from ..models import Posts, User
+from flask_login import current_user
 import sqlalchemy
 
 
@@ -17,3 +18,7 @@ def posts(slug):
     return render_template('posts.html', post=post)
    except sqlalchemy.orm.exc.NoResultFound:
         abort(404)
+
+@main.route('/account')
+def account():
+    return render_template('account.html')

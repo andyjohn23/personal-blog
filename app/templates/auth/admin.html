@@ -2,8 +2,8 @@
 {% import 'bootstrap/wtf.html' as wtf%}
 
 {% block content %}
-{% if current_user.is_admin == True %}
 <div class="container">
+    {% if current_user.is_admin == True %}
     <div class="row">
         <div class="col-md-2"> </div>
         <div class="col-md-8 login-form">
@@ -19,8 +19,9 @@
         </div>
         <div clas="col-md-2"> </div>
     </div>
+    {% else %}
+    <p>you are not authorized to this page</p>
+    {% endif %}
 </div>
-{% else %}
-<p>you are not authorized to this page</p>
-{% endif %}
+
 {% endblock%}

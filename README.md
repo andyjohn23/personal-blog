@@ -1,4 +1,4 @@
-# PITCH-IT
+# PERSONAL-BLOG
 
 ## AUTHOR
 [Andrew John](https://github.com/andyjohn23)

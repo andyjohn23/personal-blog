@@ -29,6 +29,7 @@ class User(UserMixin, db.Model):
     profile_pic = db.Column(db.String(200), default='profile.png')
     pass_secure = db.Column(db.String(200))
     is_admin = db.Column(db.Boolean, default=False)
+    comment = db.relationship('Comments', backref='user', lazy='dynamic')
 
     @property
     def password(self):
@@ -64,14 +65,15 @@ class Posts(db.Model):
     __tablename__ = 'posts'
 
     id = db.Column(db.Integer, primary_key=True)
-    title = db.Column(db.String(200))
-    content = db.Column(db.Text)
-    comments = db.Column(db.Integer, default=0)
+    title = db.Column(db.String(200), nullable=False)
+    content = db.Column(db.Text, nullable=False)
+    author = db.Column(db.String(100), nullable=False)
+    date_posted = db.Column(db.DateTime, nullable=False)
+    slug = db.Column(db.String(200), unique=True, nullable=False)
+    comments = db.relationship('Comments', backref='comment', lazy='dynamic')
     views = db.Column(db.Integer, default=0)
-    date_posted = db.Column(db.DateTime)
-    slug = db.Column(db.String(200))
-    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
-    author = db.Column(db.String(200))
+    
+
     
 
     def save_post(self):
@@ -80,6 +82,32 @@ class Posts(db.Model):
 
     def __repr__(self):
         return f"Posts('{self.title}','{self.date_posted}')"
+
+class Comments(db.Model):
+    __tablename__ = 'comments' 
+    
+    id = db.Column(db.Integer, primary_key = True)
+    comments = db.Column(db.Text(),nullable=False)
+    title = db.Column(db.String(),nullable=False)
+    post_id = db.Column(db.Integer,db.ForeignKey('posts.id'))
+    user_id = db.Column(db.Integer,db.ForeignKey('users.id'))
+    
+    def save_comment(self):
+        db.session.add(self)
+        db.session.commit()
+        
+    def delete_comment(self):
+        db.session.delete(self)
+        db.session.commit()
+        
+    @classmethod
+    def get_comments(cls,blog_id):
+        comments = Comments.query.filter_by(posts_id=posts_id).all()
+
+        return comments
+        
+    def __repr__(self):
+        return f'Comment{self.comments}'
 
 
 class Controller(ModelView):

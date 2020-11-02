@@ -1,7 +1,8 @@
-from flask import render_template, redirect, url_for,abort
+from flask import render_template, redirect, url_for,abort,request,flash
 from . import main
-from ..models import Posts, User
-from flask_login import current_user
+from ..models import Posts, User, Comments
+from .forms import CommentsForm
+from flask_login import current_user,login_required
 import sqlalchemy
 
 
@@ -27,3 +28,22 @@ def account():
 def blogs():
     posts = Posts.query.all()
     return render_template('blogs.html', posts=posts)
+
+@main.route('/comments/<int:posts_id>', methods=['GET','POST'])
+@login_required
+def new_comment(posts_id):
+    form = CommentsForm()
+    posts = Posts.query.get(posts_id)
+    comment = Comments.query.filter_by(post_id=posts_id).all()
+    if form.validate_on_submit():
+        comments = form.comment.data
+        
+        post_id = posts_id
+        user_id = current_user._get_current_object().id
+        new_comment= Comments(comments=comments,posts_id=post_id, user_id=user_id)
+        new_comment.save_comment()      
+       
+        return redirect(url_for('main.new_comment', posts_id=post_id))
+    
+    return render_template('comments.html', form=form, comment=comment, posts_id=post_id,posts=posts)
+

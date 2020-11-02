@@ -3,7 +3,8 @@ from . import auth
 from ..models import User
 from .forms import RegistrationForm,LoginForm,adminForm
 from .. import db
-from flask_login import login_user,logout_user,login_required,role_required
+from flask_login import login_user,logout_user,login_required
+
 
 
 @auth.route('/register',methods = ["GET","POST"])
@@ -33,7 +34,6 @@ def login():
     return render_template('auth/login.html',login_form = login_form,title=title)
 
 @auth.route('/admin',methods=['GET','POST'])
-@role_required
 def create_admin():
     admin_form = adminForm()
 

@@ -2,15 +2,11 @@
 {% for post in posts %}
 <div class="container">
     <a href={{"/posts/" + post.slug}} style="color: black;">
-        <div class="card">
-            <div class="card-body">
-                <img src="/static/images/logo.png" class="card-img-top" alt="blog_posts">
-                <strong><h5 class="card-title">{{post.title |truncate(20)}}</h5></strong>
-                <p class="card-text">{{post.content |truncate(150)}}</p><br>
-                <p class="card-text">Posted by: <a href="">{{ post.author }}</a>
-                    on {{post.date_posted.strftime('%B %d, %Y')}}</p>
-            </div>
-        </div>
+        <h3><em><img src="images/img02.jpg" alt="" width="130" height="130" class="alignleft border" /></em>Magna phasellus etiam ultrices</h3>
+        <p>{{post.title |truncate(20)}}</p>
+        <p>{{post.content |truncate(150)}}</p>
+        <p>Posted by: <a href="">{{ post.author }}</a> on {{post.date_posted.strftime('%B %d, %Y')}}</p>
+        <p><a href="#" class="button-style">Read More</a></p>
     </a>
 </div>
 {% endfor %}

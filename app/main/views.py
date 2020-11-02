@@ -2,6 +2,7 @@ from flask import render_template, redirect, url_for,abort,request,flash
 from . import main
 from ..models import Posts, User, Comments
 from .forms import CommentsForm
+from ..requests import get_quotes
 from flask_login import current_user,login_required
 import sqlalchemy
 
@@ -9,7 +10,8 @@ import sqlalchemy
 @main.route('/')
 def index():
     posts = Posts.query.all()
-    return render_template('index.html', posts=posts)
+    quotes = get_quotes()
+    return render_template('index.html', posts=posts, quote=quotes)
 
 
 @main.route('/posts/<string:slug>')

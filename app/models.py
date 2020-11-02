@@ -101,7 +101,7 @@ class Comments(db.Model):
         db.session.commit()
         
     @classmethod
-    def get_comments(cls,blog_id):
+    def get_comments(cls,posts_id):
         comments = Comments.query.filter_by(posts_id=posts_id).all()
 
         return comments
@@ -118,5 +118,13 @@ class Controller(ModelView):
             abort(404)    
     def not_auth(self):
         return "you are not authorised"
+
+class Quote:
+    """
+    class to define Quote Objects
+    """
+    def __init__(self,quote,author):
+        self.quote = quote
+        self.author = author
 
 admin.add_view(Controller(Posts, db.session))

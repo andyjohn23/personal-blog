@@ -23,6 +23,7 @@ To clone the project:
 1. cd to the folder then install requirements.txt
    ```
    cd personal-blog
+   python3.6 -m venv <name of your virtual environment>
    pip install -r requirements.txt
 
    ```
